@@ -1,6 +1,6 @@
 "use client";
 
-import { PartyPopper, UserRound } from "lucide-react";
+import { Sparkles, UserRound } from "lucide-react";
 import { useGuestName, setStoredGuestName } from "@/lib/guest";
 
 export default function TopBar() {
@@ -15,19 +15,19 @@ export default function TopBar() {
   }
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
-      <div className="max-w-md mx-auto flex items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-20 bg-background/90 backdrop-blur">
+      <div className="mx-auto flex max-w-md items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="gradient-bg rounded-full p-1.5">
-            <PartyPopper size={18} className="text-white" />
+          <span className="gradient-bg rounded-xl p-1.5">
+            <Sparkles size={18} className="text-white" />
           </span>
-          <span className="font-semibold gradient-text">Vrijgezellenfeest</span>
+          <span className="font-extrabold tracking-tight text-foreground">Vrijgezellenfeest</span>
         </div>
         <button
           onClick={handleEditName}
-          className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm text-muted hover:text-foreground transition-colors"
+          className="flex items-center gap-1.5 rounded-full bg-surface-elevated px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
         >
-          <UserRound size={15} />
+          <UserRound size={15} className="text-muted" />
           {ready && guestName ? guestName : "Naam"}
         </button>
       </div>

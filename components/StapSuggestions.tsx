@@ -47,9 +47,9 @@ export default function StapSuggestions() {
   }
 
   return (
-    <div className="border-t border-border pt-3 flex flex-col gap-3">
+    <div className="flex flex-col gap-3 border-t border-white/10 pt-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-muted uppercase tracking-wide">
+        <span className="text-xs font-bold uppercase tracking-wide text-muted">
           Suggesties voor het stappen
         </span>
         <button onClick={load} aria-label="Vernieuwen">
@@ -62,19 +62,19 @@ export default function StapSuggestions() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Naam van bar of club"
-          className="rounded-lg bg-surface-elevated border border-border px-3 py-2 text-sm outline-none focus:border-accent-pink"
+          className="pill-input px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-tile-programma/40"
         />
         <div className="flex gap-2">
           <input
             value={link}
             onChange={(e) => setLink(e.target.value)}
             placeholder="Link (optioneel)"
-            className="flex-1 rounded-lg bg-surface-elevated border border-border px-3 py-2 text-sm outline-none focus:border-accent-pink"
+            className="pill-input flex-1 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-tile-programma/40"
           />
           <button
             type="submit"
             disabled={!text.trim() || submitting}
-            className="gradient-bg rounded-lg px-3 disabled:opacity-40"
+            className="tile-programma rounded-full px-4 disabled:opacity-40"
             aria-label="Versturen"
           >
             <Send size={16} className="text-white" />

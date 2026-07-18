@@ -31,7 +31,7 @@ export default function FotowallPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">Fotowall</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight">Fotowall</h1>
         <button onClick={load} aria-label="Vernieuwen">
           <RefreshCw size={16} className="text-muted" />
         </button>

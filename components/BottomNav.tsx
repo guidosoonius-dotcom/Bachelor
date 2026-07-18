@@ -16,8 +16,8 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-20 border-t border-border bg-surface/95 backdrop-blur">
-      <div className="max-w-md mx-auto grid grid-cols-5">
+    <nav className="fixed inset-x-0 bottom-0 z-20 bg-surface/95 backdrop-blur">
+      <div className="mx-auto grid max-w-md grid-cols-5">
         {ITEMS.map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
           return (
@@ -26,12 +26,14 @@ export default function BottomNav() {
               href={href}
               className="flex flex-col items-center gap-1 py-2.5 text-xs"
             >
-              <Icon
-                size={20}
-                className={active ? "text-accent-pink" : "text-muted"}
-                strokeWidth={active ? 2.5 : 2}
-              />
-              <span className={active ? "gradient-text font-medium" : "text-muted"}>
+              <span className={active ? "gradient-bg rounded-full p-2" : "p-2"}>
+                <Icon
+                  size={18}
+                  className={active ? "text-white" : "text-muted"}
+                  strokeWidth={active ? 2.5 : 2}
+                />
+              </span>
+              <span className={active ? "font-semibold text-foreground" : "text-muted"}>
                 {label}
               </span>
             </Link>

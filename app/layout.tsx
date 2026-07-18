@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { EVENT_TITLE } from "@/lib/content";
 import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
 import NameGate from "@/components/NameGate";
 
-const geistSans = Geist({
+const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={`${geistSans.variable} h-full antialiased`}>
+    <html lang="nl" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NameGate />
         <TopBar />

@@ -61,7 +61,7 @@ export default function PhotoUploadForm({ onUploaded }: { onUploaded: () => void
       <button
         onClick={() => inputRef.current?.click()}
         disabled={uploading}
-        className="gradient-bg rounded-xl py-3 flex items-center justify-center gap-2 font-medium disabled:opacity-50"
+        className="tile-fotowall flex items-center justify-center gap-2 rounded-full py-3.5 font-bold text-white disabled:opacity-50"
       >
         <Upload size={18} />
         {uploading ? "Uploaden..." : "Foto toevoegen"}

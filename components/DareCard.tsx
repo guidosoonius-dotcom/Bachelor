@@ -20,12 +20,12 @@ export default function DareCard({
       <button
         onClick={onVote}
         disabled={voted}
-        className={`flex flex-col items-center gap-0.5 rounded-xl px-3 py-2 shrink-0 transition-colors ${
-          voted ? "gradient-bg text-white" : "border border-border text-muted"
+        className={`flex shrink-0 flex-col items-center gap-0.5 rounded-2xl px-3 py-2 transition-colors ${
+          voted ? "tile-opdrachten text-white" : "bg-surface-elevated text-muted"
         }`}
       >
         <ThumbsUp size={16} />
-        <span className="text-xs font-medium">{voteCount}</span>
+        <span className="text-xs font-bold">{voteCount}</span>
       </button>
     </GradientCard>
   );

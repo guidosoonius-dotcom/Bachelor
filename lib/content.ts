@@ -3,8 +3,19 @@
 export const BACHELOR_NAME = "de Bachelor";
 export const EVENT_DATE_LABEL = "zaterdag 8 augustus 2026";
 export const EVENT_TITLE = `Vrijgezellenfeest van ${BACHELOR_NAME}`;
+export const EVENT_DATE = new Date("2026-08-08T10:00:00+02:00");
 
 export const BACHELOR_AVATAR_SRC = "/bachelor-avatar.jpg";
+
+export type SectionKey = "programma" | "quiz" | "opdrachten" | "fotowall" | "info";
+
+export const SECTION_ACCENTS: Record<SectionKey, { tileClass: string; textClass: string }> = {
+  programma: { tileClass: "tile-programma", textClass: "text-tile-programma" },
+  quiz: { tileClass: "tile-quiz", textClass: "text-tile-quiz" },
+  opdrachten: { tileClass: "tile-opdrachten", textClass: "text-tile-opdrachten" },
+  fotowall: { tileClass: "tile-fotowall", textClass: "text-tile-fotowall" },
+  info: { tileClass: "tile-info", textClass: "text-tile-info" },
+};
 
 export type TimelineStop = {
   time: string;

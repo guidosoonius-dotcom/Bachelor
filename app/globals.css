@@ -1,14 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0b13;
-  --surface: #15141f;
-  --surface-elevated: #1c1a29;
-  --foreground: #f5f4f8;
-  --muted: #948fa8;
-  --accent-pink: #ff3caa;
-  --accent-purple: #7b2ff7;
-  --border: #2a2836;
+  --background: #050505;
+  --surface: #131316;
+  --surface-elevated: #1c1c20;
+  --foreground: #f7f7f8;
+  --muted: #918f99;
+  --border: #232226;
+
+  /* Signature gradient: reserved for the logo mark, the squiggle accent and
+     primary CTAs — not used as filler on every icon. */
+  --accent-pink: #ff3f8e;
+  --accent-red: #ff5b4d;
+  --accent-purple: #8b3ffa;
+
+  /* Per-section accent colors, each its own vivid hue (not one repeated gradient) */
+  --tile-programma-from: #ffb37b;
+  --tile-programma-to: #ff5f6d;
+  --tile-quiz-from: #a179ff;
+  --tile-quiz-to: #5b2fd6;
+  --tile-opdrachten-from: #2dd4bf;
+  --tile-opdrachten-to: #0f766e;
+  --tile-fotowall-from: #f7d158;
+  --tile-fotowall-to: #c98a12;
+  --tile-info-from: #e8a0be;
+  --tile-info-to: #a8467a;
 }
 
 @theme inline {
@@ -17,9 +33,14 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-border: var(--border);
   --color-accent-pink: var(--accent-pink);
   --color-accent-purple: var(--accent-purple);
-  --color-border: var(--border);
+  --color-tile-programma: var(--tile-programma-from);
+  --color-tile-quiz: var(--tile-quiz-from);
+  --color-tile-opdrachten: var(--tile-opdrachten-from);
+  --color-tile-fotowall: var(--tile-fotowall-from);
+  --color-tile-info: var(--tile-info-from);
   --font-sans: var(--font-sans);
 }
 
@@ -32,15 +53,8 @@ body {
   color: var(--foreground);
 }
 
-.gradient-text {
-  background-image: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 .gradient-bg {
-  background-image: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  background-image: linear-gradient(120deg, var(--accent-pink), var(--accent-red), var(--accent-purple));
 }
 
 .gradient-ring {
@@ -49,10 +63,44 @@ body {
   border-radius: 9999px;
 }
 
+/* Pill button/input with a glowing signature-gradient outline and a solid
+   dark fill — the outer element supplies the gradient "border" via padding. */
+.glow-ring {
+  background-image: linear-gradient(120deg, var(--accent-pink), var(--accent-red), var(--accent-purple));
+  padding: 2px;
+  border-radius: 9999px;
+  box-shadow: 0 0 24px -6px rgba(255, 63, 142, 0.55);
+}
+
 .card {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
+}
+
+.pill-input {
+  background: var(--surface-elevated);
+  border-radius: 9999px;
+}
+
+.tile-programma {
+  background-image: linear-gradient(135deg, var(--tile-programma-from), var(--tile-programma-to));
+}
+.tile-quiz {
+  background-image: linear-gradient(135deg, var(--tile-quiz-from), var(--tile-quiz-to));
+}
+.tile-opdrachten {
+  background-image: linear-gradient(135deg, var(--tile-opdrachten-from), var(--tile-opdrachten-to));
+}
+.tile-fotowall {
+  background-image: linear-gradient(135deg, var(--tile-fotowall-from), var(--tile-fotowall-to));
+}
+.tile-info {
+  background-image: linear-gradient(135deg, var(--tile-info-from), var(--tile-info-to));
+}
+
+.badge-icon {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
 }
 
 ::-webkit-scrollbar {

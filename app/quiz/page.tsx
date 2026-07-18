@@ -47,7 +47,7 @@ export default function QuizPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-xl font-semibold">Quiz over de bachelor</h1>
+      <h1 className="text-2xl font-extrabold tracking-tight">Quiz over de bachelor</h1>
       <p className="text-sm text-muted -mt-2">
         Hoe goed ken jij hem? Beantwoord alle vragen!
       </p>

@@ -14,7 +14,7 @@ export default function PhotoGrid({ photos }: { photos: PhotoRow[] }) {
           .from(FOTOWALL_BUCKET)
           .getPublicUrl(photo.storage_path);
         return (
-          <div key={photo.id} className="relative aspect-square rounded-xl overflow-hidden card">
+          <div key={photo.id} className="card relative aspect-square overflow-hidden">
             <Image
               src={data.publicUrl}
               alt={photo.guest_name ?? "Fotowall"}

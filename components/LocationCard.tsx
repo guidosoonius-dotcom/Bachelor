@@ -7,21 +7,21 @@ export default function LocationCard({ stop }: { stop: TimelineStop }) {
   return (
     <GradientCard className="flex flex-col gap-3">
       <div className="flex items-start gap-3">
-        <span className="gradient-text font-semibold text-sm shrink-0 pt-0.5">
+        <span className="text-tile-programma shrink-0 pt-0.5 text-sm font-extrabold">
           {stop.time}
         </span>
         <div className="flex-1">
-          <h3 className="font-semibold">{stop.title}</h3>
-          <p className="text-sm text-muted mt-1">{stop.description}</p>
+          <h3 className="font-bold">{stop.title}</h3>
+          <p className="mt-1 text-sm text-muted">{stop.description}</p>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 pl-0">
+      <div className="flex flex-wrap gap-2">
         <a
           href={buildMapsUrl(stop.locationName, stop.city)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs rounded-full border border-border px-3 py-1.5 hover:border-accent-pink/60 transition-colors"
+          className="flex items-center gap-1.5 rounded-full bg-surface-elevated px-3 py-1.5 text-xs font-medium transition-colors hover:bg-surface"
         >
           <MapPin size={13} />
           Route
@@ -31,7 +31,7 @@ export default function LocationCard({ stop }: { stop: TimelineStop }) {
             href={stop.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs rounded-full border border-border px-3 py-1.5 hover:border-accent-pink/60 transition-colors"
+            className="flex items-center gap-1.5 rounded-full bg-surface-elevated px-3 py-1.5 text-xs font-medium transition-colors hover:bg-surface"
           >
             <ExternalLink size={13} />
             Website
