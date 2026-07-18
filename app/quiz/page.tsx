@@ -49,13 +49,14 @@ export default function QuizPage() {
     <div className="flex flex-col gap-4">
       <h1 className="font-display text-3xl font-semibold tracking-tight">Quiz over de bachelor</h1>
       <p className="text-sm text-muted -mt-2">
-        Hoe goed ken jij hem? Beantwoord alle vragen!
+        Hoe goed ken jij hem? Beantwoord alle {questions.length} vragen!
       </p>
 
       <div className="flex flex-col gap-4">
-        {questions.map((q) => (
+        {questions.map((q, index) => (
           <QuizQuestion
             key={q.id}
+            number={index + 1}
             question={q}
             guestName={guestName ?? ""}
             answered={myAnswers[q.id] ?? null}

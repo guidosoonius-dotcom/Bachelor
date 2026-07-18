@@ -9,11 +9,13 @@ import { QuizQuestionRow } from "@/lib/types";
 const OPTION_KEYS = ["a", "b", "c", "d"] as const;
 
 export default function QuizQuestion({
+  number,
   question,
   guestName,
   answered,
   onAnswered,
 }: {
+  number: number;
   question: QuizQuestionRow;
   guestName: string;
   answered: "a" | "b" | "c" | "d" | null;
@@ -38,6 +40,7 @@ export default function QuizQuestion({
 
   return (
     <GradientCard className="flex flex-col gap-3">
+      <p className="text-xs font-bold uppercase tracking-wide text-primary">Vraag {number}</p>
       <p className="font-bold">{question.question}</p>
       <div className="flex flex-col gap-2">
         {OPTION_KEYS.map((key) => {
