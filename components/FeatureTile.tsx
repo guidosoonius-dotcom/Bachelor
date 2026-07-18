@@ -31,7 +31,7 @@ export default function FeatureTile({
       style={fullWidth ? { gridColumn: "span 2" } : undefined}
     >
       <span className="icon-box">
-        <Icon size={18} />
+        <Icon size={22} />
       </span>
 
       {hasProgress && (

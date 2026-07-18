@@ -21,7 +21,7 @@ export default function BottomNav() {
         const active = pathname === href;
         return (
           <Link key={href} href={href} className={`nav-item ${active ? "active" : ""}`}>
-            <Icon size={20} className="nav-item-icon" strokeWidth={active ? 2.5 : 2} />
+            <Icon size={22} className="nav-item-icon" strokeWidth={active ? 2.5 : 2} />
             <span>{label}</span>
           </Link>
         );
