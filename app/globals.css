@@ -50,6 +50,7 @@
   --color-tile-fotowall: var(--tile-fotowall-from);
   --color-tile-info: var(--tile-info-from);
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
 html {

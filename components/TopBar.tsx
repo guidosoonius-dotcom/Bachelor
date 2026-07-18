@@ -20,7 +20,7 @@ export default function TopBar() {
           <span className="gradient-bg rounded-xl p-1.5">
             <Sparkles size={18} className="text-white" />
           </span>
-          <span className="font-extrabold tracking-tight text-foreground">Vrijgezellenfeest</span>
+          <span className="font-display text-lg font-semibold tracking-tight text-foreground">Vrijgezellenfeest</span>
         </div>
         <button
           onClick={handleEditName}

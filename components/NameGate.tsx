@@ -45,11 +45,11 @@ export default function NameGate() {
       </span>
 
       <div className="flex flex-col items-center gap-1">
-        <h1 className="text-4xl font-extrabold leading-tight tracking-tight">Doe je mee?</h1>
+        <h1 className="font-display text-5xl font-semibold leading-tight tracking-tight">Doe je mee?</h1>
         <GradientSquiggle />
       </div>
 
-      <p className="-mt-2 max-w-xs text-sm text-muted">
+      <p className="font-display -mt-2 max-w-xs text-base italic text-muted">
         {EVENT_TITLE}. Vul je naam in zodat we weten wie er stemt en de quiz wint.
       </p>
 

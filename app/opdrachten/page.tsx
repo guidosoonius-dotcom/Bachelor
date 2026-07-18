@@ -54,7 +54,7 @@ export default function OpdrachtenPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-extrabold tracking-tight">Opdrachten</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-tight">Opdrachten</h1>
       <p className="text-sm text-muted -mt-2">
         Stem op de opdrachten die de bachelor moet uitvoeren!
       </p>

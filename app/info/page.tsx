@@ -4,7 +4,7 @@ import { PRACTICAL_INFO } from "@/lib/content";
 export default function InfoPage() {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-extrabold tracking-tight">Praktische informatie</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-tight">Praktische informatie</h1>
       <div className="flex flex-col gap-3">
         {PRACTICAL_INFO.map((item) => (
           <GradientCard key={item.label}>
