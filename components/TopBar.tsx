@@ -15,7 +15,8 @@ export default function TopBar() {
     }
   }
 
-  if (pathname === "/") return null;
+  const hiddenOn = ["/", "/timeline", "/quiz", "/opdrachten", "/info"];
+  if (hiddenOn.includes(pathname)) return null;
 
   return (
     <header className="sticky top-0 z-20 bg-background/90 backdrop-blur">
