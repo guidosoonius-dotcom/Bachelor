@@ -67,6 +67,13 @@ export function getStopDateTime(stop: TimelineStop): Date {
   return date;
 }
 
+export function getNextUpcomingStop(): TimelineStop | null {
+  const now = Date.now();
+  return TIMELINE.find((stop) => getStopDateTime(stop).getTime() > now) ?? null;
+}
+
+export const PHOTO_GOAL = 10;
+
 export type PracticalInfoItem = {
   label: string;
   value: string;

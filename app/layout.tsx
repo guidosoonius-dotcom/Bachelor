@@ -5,6 +5,7 @@ import { EVENT_TITLE } from "@/lib/content";
 import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
 import NameGate from "@/components/NameGate";
+import BodyThemeSync from "@/components/BodyThemeSync";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${jakarta.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <BodyThemeSync />
         <NameGate />
         <TopBar />
         <main className="flex-1 w-full max-w-md mx-auto px-4 pt-4 pb-28">

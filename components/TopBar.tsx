@@ -1,9 +1,11 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { PartyPopper, UserRound } from "lucide-react";
 import { useGuestName } from "@/lib/guest";
 
 export default function TopBar() {
+  const pathname = usePathname();
   const { guestName, setGuestName, ready } = useGuestName();
 
   function handleEditName() {
@@ -12,6 +14,8 @@ export default function TopBar() {
       setGuestName(next);
     }
   }
+
+  if (pathname === "/") return null;
 
   return (
     <header className="sticky top-0 z-20 bg-background/90 backdrop-blur">

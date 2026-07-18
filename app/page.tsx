@@ -1,19 +1,85 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { CalendarClock, HelpCircle, ListChecks, Camera, Info } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
+import { useGuestName } from "@/lib/guest";
+import { PHOTO_GOAL } from "@/lib/content";
+import HomeHeader from "@/components/HomeHeader";
 import CountdownHero from "@/components/CountdownHero";
 import FeatureTile from "@/components/FeatureTile";
+import UpcomingEventCard from "@/components/UpcomingEventCard";
 
 export default function Home() {
+  const { guestName, ready } = useGuestName();
+  const [quizRemaining, setQuizRemaining] = useState(0);
+  const [daresProgress, setDaresProgress] = useState(0);
+  const [photoCount, setPhotoCount] = useState(0);
+
+  useEffect(() => {
+    if (!ready) return;
+
+    async function load() {
+      const [{ data: questions }, { data: answers }, { data: dares }, { data: votes }, { count: photos }] =
+        await Promise.all([
+          supabase.from("quiz_questions").select("id"),
+          supabase.from("quiz_answers").select("question_id, guest_name"),
+          supabase.from("dares").select("id"),
+          supabase.from("dare_votes").select("dare_id, guest_name"),
+          supabase.from("photos").select("id", { count: "exact", head: true }),
+        ]);
+
+      const totalQuestions = questions?.length ?? 0;
+      const answeredByMe = guestName
+        ? new Set(
+            (answers ?? [])
+              .filter((a) => a.guest_name === guestName)
+              .map((a) => a.question_id)
+          ).size
+        : 0;
+      setQuizRemaining(Math.max(0, totalQuestions - answeredByMe));
+
+      const totalDares = dares?.length ?? 0;
+      const votedByMe = guestName
+        ? new Set(
+            (votes ?? []).filter((v) => v.guest_name === guestName).map((v) => v.dare_id)
+          ).size
+        : 0;
+      setDaresProgress(totalDares === 0 ? 0 : Math.round((votedByMe / totalDares) * 100));
+
+      setPhotoCount(photos ?? 0);
+    }
+
+    load();
+  }, [ready, guestName]);
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
+      <HomeHeader />
       <CountdownHero />
 
       <section className="grid-menu">
-        <FeatureTile href="/timeline" label="Programma & locaties" icon={CalendarClock} />
-        <FeatureTile href="/quiz" label="Quiz" icon={HelpCircle} />
-        <FeatureTile href="/opdrachten" label="Opdrachten" icon={ListChecks} />
-        <FeatureTile href="/fotowall" label="Fotowall" icon={Camera} />
-        <FeatureTile href="/info" label="Praktische info" icon={Info} fullWidth />
+        <FeatureTile href="/timeline" label="Programma & locaties" icon={CalendarClock} variant="light" />
+        <FeatureTile href="/quiz" label="Quiz" icon={HelpCircle} variant="teal" badge={quizRemaining} />
+        <FeatureTile
+          href="/opdrachten"
+          label="Opdrachten"
+          icon={ListChecks}
+          variant="light"
+          progress={daresProgress}
+        />
+        <FeatureTile
+          href="/fotowall"
+          label="Fotowall"
+          icon={Camera}
+          variant="navy"
+          counter={`${photoCount} / ${PHOTO_GOAL}`}
+          progress={(photoCount / PHOTO_GOAL) * 100}
+        />
+        <FeatureTile href="/info" label="Praktische info" icon={Info} variant="light" fullWidth />
       </section>
+
+      <UpcomingEventCard />
     </div>
   );
 }
