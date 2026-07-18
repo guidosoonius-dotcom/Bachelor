@@ -5,7 +5,7 @@ export default function TimelinePage() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="font-display text-3xl font-semibold tracking-tight">Programma & locaties</h1>
-      <div className="flex flex-col gap-4">
+      <div className="timeline">
         {TIMELINE.map((stop) => (
           <LocationCard key={stop.time} stop={stop} />
         ))}

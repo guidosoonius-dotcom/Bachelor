@@ -61,12 +61,12 @@ export default function PhotoUploadForm({ onUploaded }: { onUploaded: () => void
       <button
         onClick={() => inputRef.current?.click()}
         disabled={uploading}
-        className="tile-fotowall flex items-center justify-center gap-2 rounded-full py-3.5 font-bold text-white disabled:opacity-50"
+        className="flex items-center justify-center gap-2 rounded-full bg-primary py-3.5 font-bold text-white shadow-subtle transition-transform active:scale-95 disabled:opacity-50"
       >
         <Upload size={18} />
         {uploading ? "Uploaden..." : "Foto toevoegen"}
       </button>
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-600">{error}</p>}
     </div>
   );
 }

@@ -1,45 +1,45 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { MapPin, ExternalLink } from "lucide-react";
-import GradientCard from "@/components/GradientCard";
 import StapSuggestions from "@/components/StapSuggestions";
-import { buildMapsUrl, TimelineStop } from "@/lib/content";
+import { buildMapsUrl, getStopDateTime, TimelineStop } from "@/lib/content";
 
 export default function LocationCard({ stop }: { stop: TimelineStop }) {
-  return (
-    <GradientCard className="flex flex-col gap-3">
-      <div className="flex items-start gap-3">
-        <span className="text-tile-programma shrink-0 pt-0.5 text-sm font-extrabold">
-          {stop.time}
-        </span>
-        <div className="flex-1">
-          <h3 className="font-bold">{stop.title}</h3>
-          <p className="mt-1 text-sm text-muted">{stop.description}</p>
-        </div>
-      </div>
+  const [completed, setCompleted] = useState(false);
 
-      <div className="flex flex-wrap gap-2">
-        <a
-          href={buildMapsUrl(stop.locationName, stop.city)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 rounded-full bg-surface-elevated px-3 py-1.5 text-xs font-medium transition-colors hover:bg-surface"
-        >
-          <MapPin size={13} />
-          Route
-        </a>
-        {stop.website && (
+  useEffect(() => {
+    setCompleted(Date.now() > getStopDateTime(stop).getTime());
+  }, [stop]);
+
+  return (
+    <div className={`timeline-item ${completed ? "completed" : ""}`}>
+      <div className="timeline-dot" />
+      <div className="timeline-card">
+        <p className="timeline-time">{stop.time}</p>
+        <h3 className="timeline-title">{stop.title}</h3>
+        <p className="mb-2 text-sm text-muted">{stop.description}</p>
+
+        <div className="flex flex-wrap gap-4">
           <a
-            href={stop.website}
+            href={buildMapsUrl(stop.locationName, stop.city)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full bg-surface-elevated px-3 py-1.5 text-xs font-medium transition-colors hover:bg-surface"
+            className="timeline-location"
           >
-            <ExternalLink size={13} />
-            Website
+            <MapPin size={13} />
+            Route
           </a>
-        )}
-      </div>
+          {stop.website && (
+            <a href={stop.website} target="_blank" rel="noopener noreferrer" className="timeline-location">
+              <ExternalLink size={13} />
+              Website
+            </a>
+          )}
+        </div>
 
-      {stop.hasSuggestions && <StapSuggestions />}
-    </GradientCard>
+        {stop.hasSuggestions && <StapSuggestions />}
+      </div>
+    </div>
   );
 }

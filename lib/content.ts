@@ -7,16 +7,6 @@ export const EVENT_DATE = new Date("2026-08-08T10:00:00+02:00");
 
 export const BACHELOR_AVATAR_SRC = "/bachelor-avatar.jpg";
 
-export type SectionKey = "programma" | "quiz" | "opdrachten" | "fotowall" | "info";
-
-export const SECTION_ACCENTS: Record<SectionKey, { tileClass: string; textClass: string }> = {
-  programma: { tileClass: "tile-programma", textClass: "text-tile-programma" },
-  quiz: { tileClass: "tile-quiz", textClass: "text-tile-quiz" },
-  opdrachten: { tileClass: "tile-opdrachten", textClass: "text-tile-opdrachten" },
-  fotowall: { tileClass: "tile-fotowall", textClass: "text-tile-fotowall" },
-  info: { tileClass: "tile-info", textClass: "text-tile-info" },
-};
-
 export type TimelineStop = {
   time: string;
   title: string;
@@ -68,6 +58,13 @@ export const TIMELINE: TimelineStop[] = [
 export function buildMapsUrl(locationName: string, city: string) {
   const query = encodeURIComponent(`${locationName}, ${city}`);
   return `https://www.google.com/maps/search/?api=1&query=${query}`;
+}
+
+export function getStopDateTime(stop: TimelineStop): Date {
+  const [hours, minutes] = stop.time.split(":").map(Number);
+  const date = new Date(EVENT_DATE);
+  date.setHours(hours, minutes, 0, 0);
+  return date;
 }
 
 export type PracticalInfoItem = {

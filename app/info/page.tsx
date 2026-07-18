@@ -8,7 +8,7 @@ export default function InfoPage() {
       <div className="flex flex-col gap-3">
         {PRACTICAL_INFO.map((item) => (
           <GradientCard key={item.label}>
-            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-tile-info">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-primary">
               {item.label}
             </p>
             <p className="text-sm">{item.value}</p>

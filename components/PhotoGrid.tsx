@@ -24,7 +24,7 @@ export default function PhotoGrid({ photos }: { photos: PhotoRow[] }) {
               unoptimized
             />
             {photo.guest_name && (
-              <span className="absolute bottom-1 left-1 right-1 truncate text-[10px] bg-black/50 rounded px-1.5 py-0.5">
+              <span className="absolute bottom-1 left-1 right-1 truncate rounded bg-black/50 px-1.5 py-0.5 text-[10px] text-white">
                 {photo.guest_name}
               </span>
             )}

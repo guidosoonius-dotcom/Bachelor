@@ -52,11 +52,11 @@ export default function QuizQuestion({
           const isCorrect = key === question.correct_option;
           const showResult = selected !== null;
 
-          let styles = "bg-surface-elevated";
+          let styles = "bg-secondary/40 text-foreground";
           if (showResult && isCorrect) {
-            styles = "bg-emerald-500/15 text-emerald-400";
+            styles = "bg-success/15 text-success";
           } else if (showResult && isSelected && !isCorrect) {
-            styles = "bg-red-500/15 text-red-400";
+            styles = "bg-red-500/15 text-red-600";
           }
 
           return (
@@ -67,8 +67,8 @@ export default function QuizQuestion({
               className={`flex items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition-colors ${styles}`}
             >
               <span>{label}</span>
-              {showResult && isCorrect && <Check size={16} className="text-emerald-400" />}
-              {showResult && isSelected && !isCorrect && <X size={16} className="text-red-400" />}
+              {showResult && isCorrect && <Check size={16} className="text-success" />}
+              {showResult && isSelected && !isCorrect && <X size={16} className="text-red-600" />}
             </button>
           );
         })}

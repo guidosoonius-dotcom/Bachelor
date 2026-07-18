@@ -58,7 +58,7 @@ export default function OpdrachtenPage() {
       <p className="text-sm text-muted -mt-2">
         Stem op de opdrachten die de bachelor moet uitvoeren!
       </p>
-      <div className="flex flex-col gap-3">
+      <div className="challenge-list">
         {sorted.map((dare) => {
           const voteCount = votes.filter((v) => v.dare_id === dare.id).length;
           const voted = votes.some(

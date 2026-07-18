@@ -16,7 +16,7 @@ export default function QuizLeaderboard({ answers }: { answers: QuizAnswerRow[] 
   return (
     <GradientCard className="flex flex-col gap-2">
       <div className="flex items-center gap-2 text-sm font-medium">
-        <Trophy size={16} className="text-tile-quiz" />
+        <Trophy size={16} className="text-accent" />
         Scoreboard
       </div>
       <ul className="flex flex-col gap-1.5">

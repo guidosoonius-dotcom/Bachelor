@@ -10,9 +10,8 @@ function GradientSquiggle() {
     <svg viewBox="0 0 300 32" className="mx-auto h-6 w-full max-w-[220px]" fill="none">
       <defs>
         <linearGradient id="squiggle" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#22577a" />
-          <stop offset="0.5" stopColor="#38a3a5" />
-          <stop offset="1" stopColor="#57cc99" />
+          <stop offset="0" stopColor="#1b4332" />
+          <stop offset="1" stopColor="#d97706" />
         </linearGradient>
       </defs>
       <path
@@ -40,12 +39,12 @@ export default function NameGate() {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-background px-6 text-center">
-      <span className="gradient-bg inline-flex rounded-2xl p-3">
+      <span className="inline-flex rounded-2xl bg-primary p-3">
         <PartyPopper size={26} className="text-white" />
       </span>
 
       <div className="flex flex-col items-center gap-1">
-        <h1 className="font-display text-5xl font-semibold leading-tight tracking-tight">Doe je mee?</h1>
+        <h1 className="text-5xl leading-tight tracking-tight text-primary">Doe je mee?</h1>
         <GradientSquiggle />
       </div>
 
@@ -61,15 +60,13 @@ export default function NameGate() {
           placeholder="Jouw naam"
           className="pill-input w-full px-5 py-4 text-center text-base outline-none focus:ring-2 focus:ring-accent/50"
         />
-        <div className={`glow-ring w-full ${!input.trim() ? "opacity-40" : ""}`}>
-          <button
-            type="submit"
-            disabled={!input.trim()}
-            className="w-full rounded-full bg-background py-3.5 font-bold text-white"
-          >
-            Doe mee!
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={!input.trim()}
+          className="w-full rounded-full bg-primary py-3.5 font-bold text-white shadow-card transition-transform active:scale-95 disabled:opacity-40"
+        >
+          Doe mee!
+        </button>
       </form>
     </div>
   );

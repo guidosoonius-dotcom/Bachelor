@@ -20,30 +20,26 @@ export default function CountdownHero() {
   const isPast = days !== null && days < 0;
 
   return (
-    <div className="tile-hero relative flex flex-col gap-5 overflow-hidden rounded-3xl p-5">
-      <div className="flex items-center gap-4">
-        <BachelorAvatar size={96} />
-        <div>
-          <p className="font-display text-sm italic text-white/80">
-            Vrijgezellenfeest van {BACHELOR_NAME}
-          </p>
-          <p className="text-sm font-semibold text-white">{EVENT_DATE_LABEL}</p>
-        </div>
+    <div className="hero-card">
+      <div className="hero-profile-wrapper">
+        <BachelorAvatar size={90} />
       </div>
+      <h2>Vrijgezellenfeest van {BACHELOR_NAME}</h2>
+      <p className="date-sub">{EVENT_DATE_LABEL}</p>
 
-      <div className="flex items-baseline gap-2">
+      <div className="countdown-section">
         {days === null ? (
-          <span className="font-display text-5xl font-semibold text-white">&nbsp;</span>
+          <div className="countdown-number">&nbsp;</div>
         ) : isPast ? (
-          <span className="font-display text-2xl font-semibold text-white">Het feest is voorbij!</span>
+          <p className="font-display text-xl font-semibold text-primary">Het feest is voorbij!</p>
         ) : isToday ? (
-          <span className="font-display text-2xl font-semibold text-white">Vandaag is het zover! 🎉</span>
+          <p className="font-display text-xl font-semibold text-primary">Vandaag is het zover! 🎉</p>
         ) : (
           <>
-            <span className="font-display text-6xl font-semibold tracking-tight text-white">{days}</span>
-            <span className="text-lg font-bold text-white/90">
+            <div className="countdown-number">{days}</div>
+            <div className="countdown-label">
               dag{days === 1 ? "" : "en"} te gaan
-            </span>
+            </div>
           </>
         )}
       </div>

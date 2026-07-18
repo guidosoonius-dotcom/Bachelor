@@ -47,7 +47,7 @@ export default function StapSuggestions() {
   }
 
   return (
-    <div className="flex flex-col gap-3 border-t border-white/10 pt-3">
+    <div className="mt-3 flex flex-col gap-3 border-t border-secondary pt-3">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold uppercase tracking-wide text-muted">
           Suggesties voor het stappen
@@ -62,22 +62,22 @@ export default function StapSuggestions() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Naam van bar of club"
-          className="pill-input px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-tile-programma/40"
+          className="pill-input px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-accent/40"
         />
         <div className="flex gap-2">
           <input
             value={link}
             onChange={(e) => setLink(e.target.value)}
             placeholder="Link (optioneel)"
-            className="pill-input flex-1 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-tile-programma/40"
+            className="pill-input flex-1 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-accent/40"
           />
           <button
             type="submit"
             disabled={!text.trim() || submitting}
-            className="tile-programma rounded-full px-4 disabled:opacity-40"
+            className="rounded-full bg-primary px-4 text-white disabled:opacity-40"
             aria-label="Versturen"
           >
-            <Send size={16} className="text-white" />
+            <Send size={16} />
           </button>
         </div>
       </form>
@@ -89,21 +89,21 @@ export default function StapSuggestions() {
       ) : (
         <ul className="flex flex-col gap-2">
           {suggestions.map((s) => (
-            <li key={s.id} className="text-sm bg-surface-elevated rounded-lg px-3 py-2">
+            <li key={s.id} className="rounded-lg bg-secondary/40 px-3 py-2 text-sm">
               <div className="flex items-center justify-between gap-2">
                 {s.link ? (
                   <a
                     href={s.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium underline decoration-accent/60 underline-offset-2"
+                    className="font-medium text-primary underline decoration-accent/60 underline-offset-2"
                   >
                     {s.suggestion}
                   </a>
                 ) : (
                   <span className="font-medium">{s.suggestion}</span>
                 )}
-                <span className="text-xs text-muted shrink-0">{s.guest_name}</span>
+                <span className="shrink-0 text-xs text-muted">{s.guest_name}</span>
               </div>
             </li>
           ))}
