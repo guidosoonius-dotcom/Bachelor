@@ -36,8 +36,12 @@ export default function FotowallPage() {
           <RefreshCw size={16} className="text-muted" />
         </button>
       </div>
+      <p className="text-sm text-muted -mt-2">
+        Heb jij een leuke foto van of met Erik? Voeg 'm toe aan de fotowall!
+      </p>
       <PhotoUploadForm onUploaded={load} />
-      {loading ? <p className="text-sm text-muted">Laden...</p> : <PhotoGrid photos={photos} />}
+      <PhotoGrid photos={photos} />
+      {loading && <p className="text-sm text-muted">Laden...</p>}
     </div>
   );
 }

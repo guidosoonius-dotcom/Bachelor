@@ -1,14 +1,22 @@
 import Image from "next/image";
 import { supabase, FOTOWALL_BUCKET } from "@/lib/supabase/client";
 import { PhotoRow } from "@/lib/types";
+import { FOTOWALL_SEED_PHOTOS } from "@/lib/content";
 
 export default function PhotoGrid({ photos }: { photos: PhotoRow[] }) {
-  if (photos.length === 0) {
-    return <p className="text-sm text-muted">Nog geen foto&apos;s, upload de eerste!</p>;
-  }
-
   return (
     <div className="grid grid-cols-2 gap-2">
+      {FOTOWALL_SEED_PHOTOS.map((seed) => (
+        <div key={seed.src} className="card relative aspect-square overflow-hidden">
+          <Image
+            src={seed.src}
+            alt={seed.alt}
+            fill
+            sizes="(max-width: 480px) 50vw, 200px"
+            className="object-cover"
+          />
+        </div>
+      ))}
       {photos.map((photo) => {
         const { data } = supabase.storage
           .from(FOTOWALL_BUCKET)
