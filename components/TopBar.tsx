@@ -15,7 +15,7 @@ export default function TopBar() {
     }
   }
 
-  const hiddenOn = ["/", "/timeline", "/quiz", "/opdrachten", "/info"];
+  const hiddenOn = ["/", "/timeline", "/quiz", "/opdrachten", "/info", "/fotowall"];
   if (hiddenOn.includes(pathname)) return null;
 
   return (
