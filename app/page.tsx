@@ -54,7 +54,7 @@ export default function Home() {
   }, [ready, guestName]);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div>
       <HomeHeader />
       <CountdownHero />
 

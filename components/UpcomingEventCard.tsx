@@ -6,22 +6,22 @@ export default function UpcomingEventCard() {
   if (!stop) return null;
 
   return (
-    <div className="flex flex-col gap-2">
-      <h2 className="upcoming-title">Aankomende evenementen</h2>
-      <div className="upcoming-card">
-        <span className="upcoming-card-icon">
-          <MapPin size={16} />
+    <section>
+      <h4 className="section-heading">Ankomende Evenementen</h4>
+      <div className="event-card">
+        <span className="event-icon-circle">
+          <MapPin size={22} />
         </span>
-        <div>
-          <p className="upcoming-card-title">
+        <div className="event-details">
+          <h4>
             {stop.title} bij {stop.locationName}
-          </p>
-          <p className="upcoming-card-sub">
-            <Clock size={12} />
+          </h4>
+          <p className="event-time-location">
+            <Clock size={14} />
             {stop.time} · {stop.locationName}, {stop.city}
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

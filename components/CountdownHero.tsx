@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { BACHELOR_AVATAR_SRC, BACHELOR_NAME, EVENT_DATE, EVENT_DATE_LABEL } from "@/lib/content";
 
 function daysRemaining() {
@@ -21,37 +20,29 @@ export default function CountdownHero() {
 
   return (
     <div className="hero-card">
-      <div className="hero-card-body">
-        <p className="date-sub">{EVENT_DATE_LABEL}</p>
-        <h2 className="hero-title">Vrijgezellenfeest van {BACHELOR_NAME}</h2>
-
-        <div className="countdown-section">
-          {days === null ? (
-            <div className="countdown-number">&nbsp;</div>
-          ) : isPast ? (
-            <p className="font-display text-lg font-semibold text-primary">Het feest is voorbij!</p>
-          ) : isToday ? (
-            <p className="font-display text-lg font-semibold text-primary">Vandaag is het zover! 🎉</p>
-          ) : (
-            <>
-              <div className="countdown-number">{days}</div>
-              <div className="countdown-label">
-                dag{days === 1 ? "" : "en"} te gaan
-              </div>
-            </>
-          )}
-        </div>
+      <div className="hero-info">
+        <span className="hero-date">{EVENT_DATE_LABEL}</span>
+        <h3 className="hero-event-title">Vrijgezellenfeest van {BACHELOR_NAME}</h3>
       </div>
 
-      <div className="hero-photo-wrap">
-        <Image
-          src={BACHELOR_AVATAR_SRC}
-          alt={BACHELOR_NAME}
-          fill
-          sizes="118px"
-          className="object-cover"
-        />
+      <div className="hero-countdown">
+        {days === null ? (
+          <div className="countdown-number">&nbsp;</div>
+        ) : isPast ? (
+          <p className="font-display text-lg font-semibold">Het feest is voorbij!</p>
+        ) : isToday ? (
+          <p className="font-display text-lg font-semibold">Vandaag is het zover! 🎉</p>
+        ) : (
+          <>
+            <div className="countdown-number">{days}</div>
+            <div className="countdown-label">
+              dag{days === 1 ? "" : "en"} te gaan
+            </div>
+          </>
+        )}
       </div>
+
+      <div className="hero-image" style={{ backgroundImage: `url(${BACHELOR_AVATAR_SRC})` }} />
     </div>
   );
 }

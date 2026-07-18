@@ -15,15 +15,15 @@ export default function HomeHeader() {
   const name = ready && guestName ? guestName : "Gast";
 
   return (
-    <div className="flex items-start justify-between gap-3 pt-2">
+    <header className="home-header">
       <h1 className="home-wordmark">Vrijgezellenfeest</h1>
-      <button onClick={handleEditName} className="home-greeting-chip">
-        <span className="home-greeting-text">Hallo {name}</span>
-        <span className="home-avatar-chip">
-          <span className="avatar-initial">{name.charAt(0).toUpperCase()}</span>
-          {name}
-        </span>
-      </button>
-    </div>
+      <div className="home-user-row">
+        <h2 className="home-welcome-text">Hallo {name}</h2>
+        <button onClick={handleEditName} className="home-user-badge">
+          <span className="home-avatar-circle">{name.charAt(0).toUpperCase()}</span>
+          <span>{name}</span>
+        </button>
+      </div>
+    </header>
   );
 }

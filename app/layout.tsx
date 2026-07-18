@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display, Pacifico } from "next/font/google";
 import "./globals.css";
 import { EVENT_TITLE } from "@/lib/content";
 import TopBar from "@/components/TopBar";
@@ -20,6 +20,12 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
+const pacifico = Pacifico({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: EVENT_TITLE,
   description: "Alles wat je nodig hebt voor het vrijgezellenfeest op 8 augustus 2026.",
@@ -31,7 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={`${jakarta.variable} ${playfair.variable} h-full antialiased`}>
+    <html
+      lang="nl"
+      className={`${jakarta.variable} ${playfair.variable} ${pacifico.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <BodyThemeSync />
         <NameGate />
