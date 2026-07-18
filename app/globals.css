@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0b13;
+  --surface: #15141f;
+  --surface-elevated: #1c1a29;
+  --foreground: #f5f4f8;
+  --muted: #948fa8;
+  --accent-pink: #ff3caa;
+  --accent-purple: #7b2ff7;
+  --border: #2a2836;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-purple: var(--accent-purple);
+  --color-border: var(--border);
+  --font-sans: var(--font-sans);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.gradient-text {
+  background-image: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bg {
+  background-image: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+}
+
+.gradient-ring {
+  background-image: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  padding: 2px;
+  border-radius: 9999px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
