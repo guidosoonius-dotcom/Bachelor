@@ -15,6 +15,8 @@ const ITEMS = [
 export default function BottomNav() {
   const pathname = usePathname();
 
+  if (pathname === "/") return null;
+
   return (
     <nav className="bottom-nav">
       {ITEMS.map(({ href, label, icon: Icon }) => {
