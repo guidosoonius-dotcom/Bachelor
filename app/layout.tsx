@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display, Pacifico } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import { EVENT_TITLE } from "@/lib/content";
 import TopBar from "@/components/TopBar";
@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
-const pacifico = Pacifico({
+const kaushanScript = Kaushan_Script({
   variable: "--font-script",
   subsets: ["latin"],
   weight: ["400"],
@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="nl"
-      className={`${jakarta.variable} ${playfair.variable} ${pacifico.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${playfair.variable} ${kaushanScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <BodyThemeSync />
