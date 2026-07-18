@@ -91,8 +91,13 @@ export type PracticalInfoItem = {
 
 export const PRACTICAL_INFO: PracticalInfoItem[] = [
   { label: "Verzamelplek & tijd", value: "11:00 uur bij Allegro 45, Krimpen aan den IJssel." },
+  {
+    label: "Adressen & parkeren",
+    value:
+      "De Basis 010: Watersportweg 11, Vlaardingen. Little V: Grotekerkplein 109, Rotterdam. Parkeertip: parkeergarage Meent of bij de Markthal.",
+  },
   { label: "Wat neem je mee?", value: "Comfortabele kleding en schoenen voor de activiteiten, en iets feestelijks voor de avond." },
-  { label: "Vervoer", value: "We regelen gezamenlijk vervoer tussen de locaties — details volgen." },
+  { label: "Vervoer", value: "Carpoolen is handig, maar regel dit zelf onderling." },
   { label: "Contactpersoon", value: "Bij vragen of noodgevallen: Ronald van Velzen (+31 6 23 21 27 23) of Guido (+31 6 21 39 30 58). Makkelijkst is via de groepsapp." },
   {
     label: "Kosten",
