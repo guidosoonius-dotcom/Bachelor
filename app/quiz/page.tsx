@@ -50,7 +50,7 @@ export default function QuizPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">Quiz over de bachelor</h1>
+      <h1 className="heading-script text-4xl">Quiz over de bachelor</h1>
       <p className="text-sm text-muted -mt-2">
         Hoe goed ken jij hem? Beantwoord alle {questions.length} vragen! De goede en foute
         antwoorden zie je pas zodra je alle vragen hebt beantwoord.

@@ -33,7 +33,7 @@ function linkifyPhoneNumbers(text: string): ReactNode {
 export default function InfoPage() {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">Praktische informatie</h1>
+      <h1 className="heading-script text-4xl">Praktische informatie</h1>
       <div className="flex flex-col gap-3">
         {PRACTICAL_INFO.map((item) => (
           <GradientCard key={item.label}>
