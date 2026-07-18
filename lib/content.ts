@@ -77,6 +77,7 @@ export const PHOTO_GOAL = 10;
 export type PracticalInfoItem = {
   label: string;
   value: string;
+  link?: string;
 };
 
 export const PRACTICAL_INFO: PracticalInfoItem[] = [
@@ -84,6 +85,10 @@ export const PRACTICAL_INFO: PracticalInfoItem[] = [
   { label: "Wat neem je mee?", value: "Comfortabele kleding en schoenen voor de activiteiten, en iets feestelijks voor de avond." },
   { label: "Vervoer", value: "We regelen gezamenlijk vervoer tussen de locaties — details volgen." },
   { label: "Contactpersoon", value: "Bij vragen of noodgevallen: Ronald van Velzen (+31 6 23 21 27 23) of Guido (+31 6 21 39 30 58). Makkelijkst is via de groepsapp." },
-  { label: "Kosten", value: "[Bedrag invullen] per persoon, vooraf over te maken naar [rekeningnummer]." },
+  {
+    label: "Kosten",
+    value: "Alle kosten verrekenen we via de Tikkie Groepie. Sluit je aan via onderstaande link:",
+    link: "https://tikkie.me/groepie/6N9TPjMrD1N3oFq9jwUTTs/join",
+  },
   { label: "Dresscode", value: "Casual overdag, iets feestelijkers voor het eten en stappen 's avonds." },
 ];

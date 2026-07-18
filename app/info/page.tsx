@@ -12,6 +12,16 @@ export default function InfoPage() {
               {item.label}
             </p>
             <p className="text-sm">{item.value}</p>
+            {item.link && (
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-sm font-semibold text-primary underline"
+              >
+                {item.link}
+              </a>
+            )}
           </GradientCard>
         ))}
       </div>
