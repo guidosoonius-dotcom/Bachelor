@@ -118,7 +118,7 @@ export const PRACTICAL_INFO: PracticalInfoItem[] = [
   },
   { label: "Wat neem je mee?", value: "Comfortabele kleding en schoenen voor de activiteiten, en iets feestelijks voor de avond." },
   { label: "Vervoer", value: "Carpoolen is handig, maar regel dit zelf onderling." },
-  { label: "Contactpersoon", value: "Bij vragen of noodgevallen: Ronald van Velzen (+31 6 23 21 27 23) of Guido (+31 6 21 39 30 58). Makkelijkst is via de groepsapp." },
+  { label: "Contactpersoon", value: "Bij vragen of noodgevallen: Ronald van Velzen (+31 6 23 21 27 23) of Guido Soonius (+31 6 21 39 30 58). Makkelijkst is via de groepsapp." },
   {
     label: "Kosten",
     value: "Alle kosten verrekenen we via de Tikkie Groepie. Sluit je aan via onderstaande link:",
