@@ -27,6 +27,10 @@ export default function TopDareCard({
     <section className="home-section">
       <h4 className="section-heading">Populairste opdracht</h4>
       <div className="event-card">
+        <span className="home-live-badge">
+          <span className="home-live-dot" />
+          Live
+        </span>
         <span className="event-icon-circle">
           <ThumbsUp size={22} />
         </span>

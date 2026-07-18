@@ -9,6 +9,10 @@ export default function UpcomingEventCard() {
     <section className="home-section">
       <h4 className="section-heading">Aankomende evenementen</h4>
       <div className="event-card">
+        <span className="home-live-badge">
+          <span className="home-live-dot" />
+          Live
+        </span>
         <span className="event-icon-circle">
           <MapPin size={24} />
         </span>
