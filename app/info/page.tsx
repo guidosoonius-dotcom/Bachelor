@@ -41,6 +41,16 @@ export default function InfoPage() {
               {item.label}
             </p>
             <p className="text-sm">{linkifyPhoneNumbers(item.value)}</p>
+            {item.details && (
+              <dl className="mt-2 flex flex-col divide-y divide-secondary">
+                {item.details.map((detail) => (
+                  <div key={detail.label} className="flex items-baseline justify-between gap-3 py-2">
+                    <dt className="shrink-0 text-xs font-bold text-muted">{detail.label}</dt>
+                    <dd className="text-right text-sm">{detail.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
             {item.link && (
               <a
                 href={item.link}

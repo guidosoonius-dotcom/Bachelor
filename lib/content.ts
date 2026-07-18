@@ -83,18 +83,28 @@ export function getNextUpcomingStop(): TimelineStop | null {
 
 export const PHOTO_GOAL = 10;
 
+export type PracticalInfoDetail = {
+  label: string;
+  value: string;
+};
+
 export type PracticalInfoItem = {
   label: string;
   value: string;
   link?: string;
+  details?: PracticalInfoDetail[];
 };
 
 export const PRACTICAL_INFO: PracticalInfoItem[] = [
   { label: "Verzamelplek & tijd", value: "11:00 uur bij Allegro 45, Krimpen aan den IJssel." },
   {
     label: "Adressen & parkeren",
-    value:
-      "De Basis 010: Watersportweg 11, Vlaardingen. Little V: Grotekerkplein 109, Rotterdam. Parkeertip: parkeergarage Meent of bij de Markthal.",
+    value: "Adressen van de locaties en een parkeertip voor Rotterdam.",
+    details: [
+      { label: "De Basis 010", value: "Watersportweg 11, Vlaardingen" },
+      { label: "Little V", value: "Grotekerkplein 109, Rotterdam" },
+      { label: "Parkeertip", value: "Parkeergarage Meent of bij de Markthal" },
+    ],
   },
   { label: "Wat neem je mee?", value: "Comfortabele kleding en schoenen voor de activiteiten, en iets feestelijks voor de avond." },
   { label: "Vervoer", value: "Carpoolen is handig, maar regel dit zelf onderling." },
