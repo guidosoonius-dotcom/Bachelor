@@ -96,7 +96,7 @@ export default function StapSuggestions() {
                     href={s.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium underline decoration-accent-pink/60 underline-offset-2"
+                    className="font-medium underline decoration-accent/60 underline-offset-2"
                   >
                     {s.suggestion}
                   </a>

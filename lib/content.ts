@@ -1,6 +1,6 @@
 // Alle content hieronder is makkelijk aan te passen zonder de rest van de app te hoeven wijzigen.
 
-export const BACHELOR_NAME = "de Bachelor";
+export const BACHELOR_NAME = "Erik";
 export const EVENT_DATE_LABEL = "zaterdag 8 augustus 2026";
 export const EVENT_TITLE = `Vrijgezellenfeest van ${BACHELOR_NAME}`;
 export const EVENT_DATE = new Date("2026-08-08T10:00:00+02:00");

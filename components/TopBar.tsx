@@ -1,7 +1,7 @@
 "use client";
 
 import { Sparkles, UserRound } from "lucide-react";
-import { useGuestName, setStoredGuestName } from "@/lib/guest";
+import { useGuestName } from "@/lib/guest";
 
 export default function TopBar() {
   const { guestName, setGuestName, ready } = useGuestName();
@@ -10,7 +10,6 @@ export default function TopBar() {
     const next = window.prompt("Wat is je naam?", guestName ?? "");
     if (next && next.trim()) {
       setGuestName(next);
-      setStoredGuestName(next);
     }
   }
 

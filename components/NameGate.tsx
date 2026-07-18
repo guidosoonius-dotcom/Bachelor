@@ -10,9 +10,9 @@ function GradientSquiggle() {
     <svg viewBox="0 0 300 32" className="mx-auto h-6 w-full max-w-[220px]" fill="none">
       <defs>
         <linearGradient id="squiggle" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#ff3f8e" />
-          <stop offset="0.5" stopColor="#ff5b4d" />
-          <stop offset="1" stopColor="#8b3ffa" />
+          <stop offset="0" stopColor="#22577a" />
+          <stop offset="0.5" stopColor="#38a3a5" />
+          <stop offset="1" stopColor="#57cc99" />
         </linearGradient>
       </defs>
       <path
@@ -59,7 +59,7 @@ export default function NameGate() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Jouw naam"
-          className="pill-input w-full px-5 py-4 text-center text-base outline-none focus:ring-2 focus:ring-accent-pink/50"
+          className="pill-input w-full px-5 py-4 text-center text-base outline-none focus:ring-2 focus:ring-accent/50"
         />
         <div className={`glow-ring w-full ${!input.trim() ? "opacity-40" : ""}`}>
           <button

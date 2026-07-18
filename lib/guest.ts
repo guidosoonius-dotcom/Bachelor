@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "vjf_guest_name";
+const CHANGE_EVENT = "vjf-guest-name-change";
 
 export function getStoredGuestName(): string | null {
   if (typeof window === "undefined") return null;
@@ -11,6 +12,7 @@ export function getStoredGuestName(): string | null {
 
 export function setStoredGuestName(name: string) {
   window.localStorage.setItem(STORAGE_KEY, name.trim());
+  window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
 export function useGuestName() {
@@ -20,11 +22,16 @@ export function useGuestName() {
   useEffect(() => {
     setGuestNameState(getStoredGuestName());
     setReady(true);
+
+    function handleChange() {
+      setGuestNameState(getStoredGuestName());
+    }
+    window.addEventListener(CHANGE_EVENT, handleChange);
+    return () => window.removeEventListener(CHANGE_EVENT, handleChange);
   }, []);
 
   const setGuestName = useCallback((name: string) => {
     setStoredGuestName(name);
-    setGuestNameState(name.trim());
   }, []);
 
   return { guestName, setGuestName, ready };

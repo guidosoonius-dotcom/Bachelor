@@ -20,9 +20,9 @@ export default function CountdownHero() {
   const isPast = days !== null && days < 0;
 
   return (
-    <div className="gradient-bg relative flex flex-col gap-5 overflow-hidden rounded-3xl p-5">
-      <div className="flex items-center gap-3">
-        <BachelorAvatar size={48} />
+    <div className="tile-hero relative flex flex-col gap-5 overflow-hidden rounded-3xl p-5">
+      <div className="flex items-center gap-4">
+        <BachelorAvatar size={96} />
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-white/75">
             Vrijgezellenfeest van {BACHELOR_NAME}

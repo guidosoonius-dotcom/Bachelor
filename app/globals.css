@@ -8,23 +8,32 @@
   --muted: #918f99;
   --border: #232226;
 
+  /* Brand palette */
+  --baltic-blue: #22577a;
+  --tropical-teal: #38a3a5;
+  --emerald: #57cc99;
+  --light-green: #80ed99;
+  --tea-green: #c7f9cc;
+
   /* Signature gradient: reserved for the logo mark, the squiggle accent and
      primary CTAs — not used as filler on every icon. */
-  --accent-pink: #ff3f8e;
-  --accent-red: #ff5b4d;
-  --accent-purple: #8b3ffa;
+  --accent: var(--tropical-teal);
 
-  /* Per-section accent colors, each its own vivid hue (not one repeated gradient) */
-  --tile-programma-from: #ffb37b;
-  --tile-programma-to: #ff5f6d;
-  --tile-quiz-from: #a179ff;
-  --tile-quiz-to: #5b2fd6;
-  --tile-opdrachten-from: #2dd4bf;
-  --tile-opdrachten-to: #0f766e;
-  --tile-fotowall-from: #f7d158;
-  --tile-fotowall-to: #c98a12;
-  --tile-info-from: #e8a0be;
-  --tile-info-to: #a8467a;
+  /* Per-section accent colors, each its own hue from the brand palette */
+  --tile-programma-from: var(--baltic-blue);
+  --tile-programma-to: var(--tropical-teal);
+  --tile-quiz-from: var(--tropical-teal);
+  --tile-quiz-to: var(--emerald);
+  --tile-opdrachten-from: var(--emerald);
+  --tile-opdrachten-to: var(--light-green);
+  --tile-fotowall-from: var(--light-green);
+  --tile-fotowall-to: var(--tea-green);
+  --tile-info-from: var(--baltic-blue);
+  --tile-info-to: var(--emerald);
+
+  /* Subtle repeating wave pattern + bottom scrim, layered onto every tile */
+  --wave-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cpath d='M0 20 Q10 8 20 20 T40 20 T60 20 T80 20' stroke='white' stroke-width='2' fill='none' opacity='0.35'/%3E%3C/svg%3E");
+  --tile-scrim: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 60%);
 }
 
 @theme inline {
@@ -34,8 +43,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-accent-pink: var(--accent-pink);
-  --color-accent-purple: var(--accent-purple);
+  --color-accent: var(--accent);
   --color-tile-programma: var(--tile-programma-from);
   --color-tile-quiz: var(--tile-quiz-from);
   --color-tile-opdrachten: var(--tile-opdrachten-from);
@@ -54,11 +62,11 @@ body {
 }
 
 .gradient-bg {
-  background-image: linear-gradient(120deg, var(--accent-pink), var(--accent-red), var(--accent-purple));
+  background-image: linear-gradient(120deg, var(--baltic-blue), var(--tropical-teal), var(--emerald));
 }
 
 .gradient-ring {
-  background-image: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  background-image: linear-gradient(135deg, var(--baltic-blue), var(--emerald));
   padding: 2px;
   border-radius: 9999px;
 }
@@ -66,10 +74,10 @@ body {
 /* Pill button/input with a glowing signature-gradient outline and a solid
    dark fill — the outer element supplies the gradient "border" via padding. */
 .glow-ring {
-  background-image: linear-gradient(120deg, var(--accent-pink), var(--accent-red), var(--accent-purple));
+  background-image: linear-gradient(120deg, var(--baltic-blue), var(--tropical-teal), var(--emerald));
   padding: 2px;
   border-radius: 9999px;
-  box-shadow: 0 0 24px -6px rgba(255, 63, 142, 0.55);
+  box-shadow: 0 0 24px -6px rgba(56, 163, 165, 0.55);
 }
 
 .card {
@@ -82,24 +90,48 @@ body {
   border-radius: 9999px;
 }
 
+/* Every tile layers: a bottom scrim (for label legibility) + a subtle
+   repeating wave pattern (for liveliness) over its own gradient. */
+.tile-programma,
+.tile-quiz,
+.tile-opdrachten,
+.tile-fotowall,
+.tile-info {
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-size: cover, 80px 40px, cover;
+}
 .tile-programma {
-  background-image: linear-gradient(135deg, var(--tile-programma-from), var(--tile-programma-to));
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(135deg, var(--tile-programma-from), var(--tile-programma-to));
 }
 .tile-quiz {
-  background-image: linear-gradient(135deg, var(--tile-quiz-from), var(--tile-quiz-to));
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(135deg, var(--tile-quiz-from), var(--tile-quiz-to));
 }
 .tile-opdrachten {
-  background-image: linear-gradient(135deg, var(--tile-opdrachten-from), var(--tile-opdrachten-to));
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(135deg, var(--tile-opdrachten-from), var(--tile-opdrachten-to));
 }
 .tile-fotowall {
-  background-image: linear-gradient(135deg, var(--tile-fotowall-from), var(--tile-fotowall-to));
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(135deg, var(--tile-fotowall-from), var(--tile-fotowall-to));
 }
 .tile-info {
-  background-image: linear-gradient(135deg, var(--tile-info-from), var(--tile-info-to));
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(135deg, var(--tile-info-from), var(--tile-info-to));
+}
+
+/* Same scrim + wave treatment as the tiles, for the large hero surface
+   (kept separate from .gradient-bg so small icon badges stay plain). */
+.tile-hero {
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-size: cover, 80px 40px, cover;
+  background-image: var(--tile-scrim), var(--wave-pattern),
+    linear-gradient(120deg, var(--baltic-blue), var(--tropical-teal), var(--emerald));
 }
 
 .badge-icon {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(6px);
 }
 
