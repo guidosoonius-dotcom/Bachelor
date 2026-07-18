@@ -7,6 +7,11 @@ export const EVENT_DATE = new Date("2026-08-08T11:00:00+02:00");
 
 export const BACHELOR_AVATAR_SRC = "/bachelor-avatar.jpg";
 
+export type TravelSegment = {
+  car: string;
+  ov: string;
+};
+
 export type TimelineStop = {
   time: string;
   title: string;
@@ -15,6 +20,7 @@ export type TimelineStop = {
   city: string;
   website?: string;
   hasSuggestions?: boolean;
+  travelToNext?: TravelSegment;
 };
 
 export const TIMELINE: TimelineStop[] = [
@@ -25,6 +31,7 @@ export const TIMELINE: TimelineStop[] = [
       "We verzamelen bij Allegro 45 in Krimpen aan den IJssel — het huis van de bachelor. Zorg dat je op tijd bent!",
     locationName: "Allegro 45",
     city: "Krimpen aan den IJssel",
+    travelToNext: { car: "±35 min", ov: "±60 min" },
   },
   {
     time: "13:00",
@@ -34,6 +41,7 @@ export const TIMELINE: TimelineStop[] = [
     locationName: "De Basis 010",
     city: "Vlaardingen",
     website: "https://www.debasis010.nl",
+    travelToNext: { car: "±15 min", ov: "±25 min" },
   },
   {
     time: "20:15",
@@ -43,6 +51,7 @@ export const TIMELINE: TimelineStop[] = [
     locationName: "Little V",
     city: "Rotterdam",
     website: "https://littlev.nl",
+    travelToNext: { car: "±5 min", ov: "±10 min (of lopen)" },
   },
   {
     time: "22:30",

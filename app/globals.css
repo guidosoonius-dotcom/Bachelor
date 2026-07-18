@@ -542,6 +542,29 @@ h3 {
   gap: 4px;
 }
 
+.timeline-travel {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: -8px 0 24px 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.timeline-travel-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timeline-travel-icon {
+  color: var(--accent-ochre);
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    Scherm 3: Opdrachten (interactieve lijst)
    ========================================================================== */
