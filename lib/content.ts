@@ -114,5 +114,4 @@ export const PRACTICAL_INFO: PracticalInfoItem[] = [
     value: "Alle kosten verrekenen we via de Tikkie Groepie. Sluit je aan via onderstaande link:",
     link: "https://tikkie.me/groepie/6N9TPjMrD1N3oFq9jwUTTs/join",
   },
-  { label: "Dresscode", value: "Casual overdag, iets feestelijkers voor het eten en stappen 's avonds." },
 ];
