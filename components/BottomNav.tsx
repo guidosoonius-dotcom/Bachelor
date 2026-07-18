@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, CalendarClock, HelpCircle, ListChecks, Camera } from "lucide-react";
+import { Home, CalendarClock, HelpCircle, ListChecks, Info } from "lucide-react";
 
 const ITEMS = [
   { href: "/", label: "Home", icon: Home },
   { href: "/timeline", label: "Programma", icon: CalendarClock },
   { href: "/quiz", label: "Quiz", icon: HelpCircle },
   { href: "/opdrachten", label: "Opdrachten", icon: ListChecks },
-  { href: "/fotowall", label: "Foto's", icon: Camera },
+  { href: "/info", label: "Info", icon: Info },
 ];
 
 export default function BottomNav() {

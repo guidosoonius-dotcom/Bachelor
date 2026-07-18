@@ -68,6 +68,7 @@ export default function Home() {
           variant="light"
           progress={daresProgress}
         />
+        <FeatureTile href="/info" label="Praktische info" icon={Info} variant="light" />
         <FeatureTile
           href="/fotowall"
           label="Fotowall"
@@ -75,8 +76,8 @@ export default function Home() {
           variant="navy"
           counter={`${photoCount} / ${PHOTO_GOAL}`}
           progress={(photoCount / PHOTO_GOAL) * 100}
+          fullWidth
         />
-        <FeatureTile href="/info" label="Praktische info" icon={Info} variant="light" fullWidth />
       </section>
 
       <UpcomingEventCard />
