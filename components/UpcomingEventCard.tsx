@@ -6,7 +6,7 @@ export default function UpcomingEventCard() {
   if (!stop) return null;
 
   return (
-    <section>
+    <section className="home-section">
       <h4 className="section-heading">Aankomende evenementen</h4>
       <div className="event-card">
         <span className="event-icon-circle">
