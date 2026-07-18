@@ -13,12 +13,14 @@ export default function QuizQuestion({
   question,
   guestName,
   answered,
+  quizCompleted,
   onAnswered,
 }: {
   number: number;
   question: QuizQuestionRow;
   guestName: string;
   answered: "a" | "b" | "c" | "d" | null;
+  quizCompleted: boolean;
   onAnswered: (selected: "a" | "b" | "c" | "d") => void;
 }) {
   const [selected, setSelected] = useState<string | null>(answered);
@@ -53,13 +55,15 @@ export default function QuizQuestion({
           const label = optionLabels[key];
           const isSelected = selected === key;
           const isCorrect = key === question.correct_option;
-          const showResult = selected !== null;
+          const showResult = quizCompleted && selected !== null;
 
           let styles = "bg-secondary/40 text-foreground";
           if (showResult && isCorrect) {
             styles = "bg-success/15 text-success";
           } else if (showResult && isSelected && !isCorrect) {
             styles = "bg-red-500/15 text-red-600";
+          } else if (!showResult && isSelected) {
+            styles = "bg-secondary text-foreground ring-2 ring-primary/50";
           }
 
           return (

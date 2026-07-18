@@ -45,11 +45,15 @@ export default function QuizPage() {
     return <p className="text-muted text-sm">Laden...</p>;
   }
 
+  const quizCompleted =
+    questions.length > 0 && questions.every((q) => myAnswers[q.id] !== undefined);
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="font-display text-3xl font-semibold tracking-tight">Quiz over de bachelor</h1>
       <p className="text-sm text-muted -mt-2">
-        Hoe goed ken jij hem? Beantwoord alle {questions.length} vragen!
+        Hoe goed ken jij hem? Beantwoord alle {questions.length} vragen! De goede en foute
+        antwoorden zie je pas zodra je alle vragen hebt beantwoord.
       </p>
 
       <div className="flex flex-col gap-4">
@@ -60,6 +64,7 @@ export default function QuizPage() {
             question={q}
             guestName={guestName ?? ""}
             answered={myAnswers[q.id] ?? null}
+            quizCompleted={quizCompleted}
             onAnswered={(selected) => {
               setAllAnswers((prev) => [
                 ...prev,
