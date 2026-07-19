@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display, Pacifico } from "next/font/google";
 import "./globals.css";
 import { EVENT_TITLE } from "@/lib/content";
@@ -30,6 +30,15 @@ const pacifico = Pacifico({
 export const metadata: Metadata = {
   title: EVENT_TITLE,
   description: "Alles wat je nodig hebt voor het vrijgezellenfeest op 8 augustus 2026.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Vrijgezellenfeest",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1b4332",
 };
 
 export default function RootLayout({

@@ -1,26 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase, FOTOWALL_BUCKET } from "@/lib/supabase/client";
 import { useGuestName } from "@/lib/guest";
-import { DareRow, DareVoteRow } from "@/lib/types";
+import { DareRow, DareVoteRow, DareCompletionRow } from "@/lib/types";
 import DareCard from "@/components/DareCard";
 
 export default function OpdrachtenPage() {
   const { guestName, ready } = useGuestName();
   const [dares, setDares] = useState<DareRow[]>([]);
   const [votes, setVotes] = useState<DareVoteRow[]>([]);
+  const [completions, setCompletions] = useState<DareCompletionRow[]>([]);
   const [loading, setLoading] = useState(true);
 
   async function load() {
     setLoading(true);
     try {
-      const [{ data: d }, { data: v }] = await Promise.all([
+      const [{ data: d }, { data: v }, { data: c }] = await Promise.all([
         supabase.from("dares").select("*").order("sort_order"),
         supabase.from("dare_votes").select("*"),
+        supabase.from("dare_completions").select("*"),
       ]);
       setDares(d ?? []);
       setVotes(v ?? []);
+      setCompletions(c ?? []);
     } finally {
       setLoading(false);
     }
@@ -40,6 +43,22 @@ export default function OpdrachtenPage() {
       .from("dare_votes")
       .insert({ dare_id: dareId, guest_name: guestName });
     if (error) load();
+  }
+
+  async function handleComplete(dareId: string, file: File) {
+    if (!guestName) return;
+    const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const path = `dares/${crypto.randomUUID()}-${safeName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from(FOTOWALL_BUCKET)
+      .upload(path, file);
+    if (uploadError) return;
+
+    const { error } = await supabase
+      .from("dare_completions")
+      .insert({ dare_id: dareId, guest_name: guestName, photo_path: path });
+    if (!error) load();
   }
 
   if (!ready || loading) {
@@ -64,6 +83,15 @@ export default function OpdrachtenPage() {
           const voted = votes.some(
             (v) => v.dare_id === dare.id && v.guest_name === guestName
           );
+          const completion = completions.find((c) => c.dare_id === dare.id);
+          const completionData = completion
+            ? {
+                photoUrl: supabase.storage
+                  .from(FOTOWALL_BUCKET)
+                  .getPublicUrl(completion.photo_path).data.publicUrl,
+                guestName: completion.guest_name,
+              }
+            : null;
           return (
             <DareCard
               key={dare.id}
@@ -71,6 +99,8 @@ export default function OpdrachtenPage() {
               voteCount={voteCount}
               voted={voted}
               onVote={() => handleVote(dare.id)}
+              completion={completionData}
+              onComplete={(file) => handleComplete(dare.id, file)}
             />
           );
         })}

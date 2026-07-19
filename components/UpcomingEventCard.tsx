@@ -1,13 +1,24 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { MapPin, Clock } from "lucide-react";
-import { getNextUpcomingStop } from "@/lib/content";
+import { getCurrentStop, getNextUpcomingStop, TimelineStop } from "@/lib/content";
 
 export default function UpcomingEventCard() {
-  const stop = getNextUpcomingStop();
+  const [stop, setStop] = useState<TimelineStop | null>(null);
+  const [isCurrent, setIsCurrent] = useState(false);
+
+  useEffect(() => {
+    const current = getCurrentStop();
+    setIsCurrent(current !== null);
+    setStop(current ?? getNextUpcomingStop());
+  }, []);
+
   if (!stop) return null;
 
   return (
     <section className="home-section">
-      <h4 className="section-heading">Aankomende evenementen</h4>
+      <h4 className="section-heading">{isCurrent ? "Nu bezig" : "Aankomende evenementen"}</h4>
       <div className="event-card">
         <span className="home-live-badge">
           <span className="home-live-dot" />

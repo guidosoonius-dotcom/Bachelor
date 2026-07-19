@@ -29,6 +29,14 @@ export type DareVoteRow = {
   guest_name: string;
 };
 
+export type DareCompletionRow = {
+  id: string;
+  dare_id: string;
+  guest_name: string;
+  photo_path: string;
+  created_at: string;
+};
+
 export type LocationSuggestionRow = {
   id: string;
   guest_name: string;

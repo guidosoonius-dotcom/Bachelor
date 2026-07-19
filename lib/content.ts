@@ -3,7 +3,12 @@
 export const BACHELOR_NAME = "Erik";
 export const EVENT_DATE_LABEL = "zaterdag 8 augustus 2026";
 export const EVENT_TITLE = `Vrijgezellenfeest van ${BACHELOR_NAME}`;
-export const EVENT_DATE = new Date("2026-08-08T11:00:00+02:00");
+
+// Vaste kalenderdatum + Nederlandse zomertijd-offset (+02:00), zodat de tijden
+// kloppen ongeacht de tijdzone van de server/browser die dit uitrekent.
+const EVENT_DATE_ISO = "2026-08-08";
+const EVENT_TZ_OFFSET = "+02:00";
+export const EVENT_DATE = new Date(`${EVENT_DATE_ISO}T11:00:00${EVENT_TZ_OFFSET}`);
 
 export const BACHELOR_AVATAR_SRC = "/bachelor-avatar.jpg";
 
@@ -80,15 +85,22 @@ export function buildMapsUrl(locationName: string, city: string) {
 }
 
 export function getStopDateTime(stop: TimelineStop): Date {
-  const [hours, minutes] = stop.time.split(":").map(Number);
-  const date = new Date(EVENT_DATE);
-  date.setHours(hours, minutes, 0, 0);
-  return date;
+  return new Date(`${EVENT_DATE_ISO}T${stop.time}:00${EVENT_TZ_OFFSET}`);
 }
 
 export function getNextUpcomingStop(): TimelineStop | null {
   const now = Date.now();
   return TIMELINE.find((stop) => getStopDateTime(stop).getTime() > now) ?? null;
+}
+
+export function getCurrentStop(): TimelineStop | null {
+  const now = Date.now();
+  let current: TimelineStop | null = null;
+  for (const stop of TIMELINE) {
+    if (getStopDateTime(stop).getTime() > now) break;
+    current = stop;
+  }
+  return current;
 }
 
 export const PHOTO_GOAL = 10;

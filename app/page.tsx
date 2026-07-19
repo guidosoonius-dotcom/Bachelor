@@ -11,6 +11,7 @@ import FeatureTile from "@/components/FeatureTile";
 import UpcomingEventCard from "@/components/UpcomingEventCard";
 import HomeQuizScoreboard from "@/components/HomeQuizScoreboard";
 import TopDareCard from "@/components/TopDareCard";
+import PhotoUploaderLeaderboard from "@/components/PhotoUploaderLeaderboard";
 
 export default function Home() {
   const { guestName, ready } = useGuestName();
@@ -22,18 +23,19 @@ export default function Home() {
   >([]);
   const [dares, setDares] = useState<{ id: string; text: string }[]>([]);
   const [dareVotes, setDareVotes] = useState<{ dare_id: string; guest_name: string }[]>([]);
+  const [photoUploaders, setPhotoUploaders] = useState<{ guest_name: string | null }[]>([]);
 
   useEffect(() => {
     if (!ready) return;
 
     async function load() {
-      const [{ data: questions }, { data: answers }, { data: daresData }, { data: votes }, { count: photos }] =
+      const [{ data: questions }, { data: answers }, { data: daresData }, { data: votes }, { data: photos }] =
         await Promise.all([
           supabase.from("quiz_questions").select("id"),
           supabase.from("quiz_answers").select("question_id, guest_name, is_correct"),
           supabase.from("dares").select("id, text"),
           supabase.from("dare_votes").select("dare_id, guest_name"),
-          supabase.from("photos").select("id", { count: "exact", head: true }),
+          supabase.from("photos").select("guest_name"),
         ]);
 
       const totalQuestions = questions?.length ?? 0;
@@ -54,10 +56,11 @@ export default function Home() {
         : 0;
       setDaresProgress(totalDares === 0 ? 0 : Math.round((votedByMe / totalDares) * 100));
 
-      setPhotoCount(photos ?? 0);
+      setPhotoCount(photos?.length ?? 0);
       setQuizAnswers(answers ?? []);
       setDares(daresData ?? []);
       setDareVotes(votes ?? []);
+      setPhotoUploaders(photos ?? []);
     }
 
     load();
@@ -93,6 +96,7 @@ export default function Home() {
       <UpcomingEventCard />
       <HomeQuizScoreboard answers={quizAnswers} />
       <TopDareCard dares={dares} votes={dareVotes} />
+      <PhotoUploaderLeaderboard photos={photoUploaders} />
     </div>
   );
 }
