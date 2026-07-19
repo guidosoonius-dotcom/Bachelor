@@ -51,7 +51,7 @@ export const TIMELINE: TimelineStop[] = [
     locationName: "De Basis 010",
     city: "Vlaardingen",
     website: "https://www.debasis010.nl",
-    travelToNext: { car: "±15 min", ov: "±25 min" },
+    travelToNext: { car: "±30 min", ov: "±45 min" },
   },
   {
     time: "20:15",
