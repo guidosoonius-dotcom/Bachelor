@@ -43,7 +43,7 @@ export const TIMELINE: TimelineStop[] = [
     time: "11:00",
     title: "Verzamelen",
     description:
-      "We verzamelen bij Allegro 45 in Krimpen aan den IJssel — het huis van de bachelor. Zorg dat je op tijd bent!",
+      "We verzamelen bij Allegro 45 in Krimpen aan den IJssel — het huis van de bachelor. Zorg dat je op tijd bent! Er wordt gezorgd voor lunch (broodjes) voordat we vertrekken.",
     locationName: "Allegro 45",
     city: "Krimpen aan den IJssel",
     travelToNext: { car: "±35 min", ov: "±60 min" },
@@ -119,6 +119,7 @@ export type PracticalInfoItem = {
 
 export const PRACTICAL_INFO: PracticalInfoItem[] = [
   { label: "Verzamelplek & tijd", value: "11:00 uur bij Allegro 45, Krimpen aan den IJssel." },
+  { label: "Lunch", value: "Broodjes worden verzorgd bij Erik thuis aan de Allegro." },
   {
     label: "Adressen & parkeren",
     value: "Adressen van de locaties en een parkeertip voor Rotterdam.",
