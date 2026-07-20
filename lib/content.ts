@@ -12,16 +12,6 @@ export const EVENT_DATE = new Date(`${EVENT_DATE_ISO}T11:00:00${EVENT_TZ_OFFSET}
 
 export const BACHELOR_AVATAR_SRC = "/bachelor-avatar.jpg";
 
-export type SeedPhoto = {
-  src: string;
-  alt: string;
-};
-
-export const FOTOWALL_SEED_PHOTOS: SeedPhoto[] = [
-  { src: "/fotowall-seed-1.jpg", alt: `${BACHELOR_NAME} vroeger` },
-  { src: "/fotowall-seed-2.jpg", alt: `${BACHELOR_NAME} vroeger` },
-];
-
 export type TravelSegment = {
   car: string;
   ov: string;
