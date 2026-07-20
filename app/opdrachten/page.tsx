@@ -3,8 +3,13 @@
 import { useEffect, useState } from "react";
 import { supabase, FOTOWALL_BUCKET } from "@/lib/supabase/client";
 import { useGuestName } from "@/lib/guest";
+import { getCurrentStop } from "@/lib/content";
 import { DareRow, DareVoteRow, DareCompletionRow } from "@/lib/types";
+import { compressImage } from "@/lib/compressImage";
 import DareCard from "@/components/DareCard";
+import NameEditButton from "@/components/NameEditButton";
+
+const POLL_INTERVAL_MS = 20000;
 
 export default function OpdrachtenPage() {
   const { guestName, ready } = useGuestName();
@@ -12,9 +17,9 @@ export default function OpdrachtenPage() {
   const [votes, setVotes] = useState<DareVoteRow[]>([]);
   const [completions, setCompletions] = useState<DareCompletionRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [eventStarted, setEventStarted] = useState(false);
 
   async function load() {
-    setLoading(true);
     try {
       const [{ data: d }, { data: v }, { data: c }] = await Promise.all([
         supabase.from("dares").select("*").order("sort_order"),
@@ -31,6 +36,12 @@ export default function OpdrachtenPage() {
 
   useEffect(() => {
     load();
+    const interval = setInterval(load, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setEventStarted(getCurrentStop() !== null);
   }, []);
 
   async function handleVote(dareId: string) {
@@ -47,12 +58,13 @@ export default function OpdrachtenPage() {
 
   async function handleComplete(dareId: string, file: File) {
     if (!guestName) return;
-    const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const compressed = await compressImage(file);
+    const safeName = compressed.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     const path = `dares/${crypto.randomUUID()}-${safeName}`;
 
     const { error: uploadError } = await supabase.storage
       .from(FOTOWALL_BUCKET)
-      .upload(path, file);
+      .upload(path, compressed);
     if (uploadError) return;
 
     const { error } = await supabase
@@ -73,7 +85,10 @@ export default function OpdrachtenPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="heading-script text-4xl">Opdrachten</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="heading-script text-4xl">Opdrachten</h1>
+        <NameEditButton />
+      </div>
       <p className="text-sm text-muted -mt-2">
         Stem op de opdrachten die de bachelor moet uitvoeren!
       </p>
@@ -101,6 +116,7 @@ export default function OpdrachtenPage() {
               onVote={() => handleVote(dare.id)}
               completion={completionData}
               onComplete={(file) => handleComplete(dare.id, file)}
+              eventStarted={eventStarted}
             />
           );
         })}

@@ -11,6 +11,7 @@ export default function DareCard({
   onVote,
   completion,
   onComplete,
+  eventStarted,
 }: {
   text: string;
   voteCount: number;
@@ -18,6 +19,7 @@ export default function DareCard({
   onVote: () => void;
   completion: { photoUrl: string; guestName: string } | null;
   onComplete: (file: File) => Promise<void>;
+  eventStarted: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -51,7 +53,7 @@ export default function DareCard({
         </div>
       </div>
 
-      {completion ? (
+      {completion && (
         <div className="challenge-proof">
           <div className="challenge-proof-img-wrap">
             <Image
@@ -68,7 +70,9 @@ export default function DareCard({
             Gelukt! Bewijs door {completion.guestName}
           </span>
         </div>
-      ) : (
+      )}
+
+      {!completion && eventStarted && (
         <>
           <input
             ref={inputRef}
@@ -90,6 +94,10 @@ export default function DareCard({
             {uploading ? "Uploaden..." : "Gelukt? Voeg bewijsfoto toe"}
           </button>
         </>
+      )}
+
+      {!completion && !eventStarted && (
+        <p className="text-xs text-muted">Bewijsfoto toevoegen kan zodra het feest begint.</p>
       )}
     </div>
   );

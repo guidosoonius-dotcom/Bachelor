@@ -75,21 +75,110 @@ h3 {
 }
 
 /* ==========================================================================
-   App chrome
+   Naam wijzigen (chip + modal, herbruikbaar op elk scherm)
    ========================================================================== */
-.app-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+.name-edit-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--brand-secondary);
   color: var(--brand-primary);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform var(--transition-smooth);
 }
 
-.user-badge {
-  font-size: 0.875rem;
-  font-weight: 600;
+.name-edit-chip:active {
+  transform: scale(0.92);
+}
+
+.name-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.name-modal-card {
   background-color: var(--bg-surface);
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.name-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-align: center;
+  margin: 0;
+}
+
+.name-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.name-modal-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: var(--brand-secondary);
+  color: var(--brand-primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+}
+
+.name-modal-save {
+  flex: 1;
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-smooth);
+}
+
+.name-modal-save:active {
+  transform: scale(0.96);
+}
+
+.name-modal-save:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.info-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--brand-secondary);
+  color: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .bottom-nav {
@@ -501,7 +590,14 @@ h3 {
   gap: 16px;
   color: #111417;
   position: relative;
+}
+
+.event-card-live {
   box-shadow: 0 0 0 1.5px rgba(217, 119, 6, 0.35), 0 12px 28px rgba(217, 119, 6, 0.28);
+}
+
+.event-card-live .event-icon-circle {
+  animation: icon-breathe 3.2s ease-in-out infinite;
 }
 
 .home-live-badge {
@@ -541,7 +637,6 @@ h3 {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: icon-breathe 3.2s ease-in-out infinite;
 }
 
 .event-details h4 {
@@ -567,7 +662,6 @@ h3 {
   padding: 8px 16px;
   color: #111417;
   position: relative;
-  box-shadow: 0 0 0 1.5px rgba(217, 119, 6, 0.35), 0 12px 28px rgba(217, 119, 6, 0.28);
 }
 
 .home-list-row {
@@ -844,7 +938,8 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .icon-box,
   .nav-item.active .nav-item-icon,
-  .event-icon-circle {
+  .event-card-live .event-icon-circle,
+  .home-live-dot {
     animation: none;
   }
 }

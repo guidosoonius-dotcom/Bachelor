@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Upload } from "lucide-react";
 import { supabase, FOTOWALL_BUCKET } from "@/lib/supabase/client";
 import { useGuestName } from "@/lib/guest";
+import { compressImage } from "@/lib/compressImage";
 
 const MAX_SIZE_BYTES = 8 * 1024 * 1024;
 
@@ -24,12 +25,13 @@ export default function PhotoUploadForm({ onUploaded }: { onUploaded: () => void
       return;
     }
     setUploading(true);
-    const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const compressed = await compressImage(file);
+    const safeName = compressed.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     const path = `${crypto.randomUUID()}-${safeName}`;
 
     const { error: uploadError } = await supabase.storage
       .from(FOTOWALL_BUCKET)
-      .upload(path, file);
+      .upload(path, compressed);
 
     if (uploadError) {
       setError("Uploaden mislukt, probeer het opnieuw.");

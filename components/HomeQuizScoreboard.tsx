@@ -15,10 +15,6 @@ export default function HomeQuizScoreboard({ answers }: { answers: ScoreboardAns
     <section className="home-section">
       <h4 className="section-heading">Scorebord quiz</h4>
       <div className="home-list-card">
-        <span className="home-live-badge">
-          <span className="home-live-dot" />
-          Live
-        </span>
         {ranked.map(([name, score], i) => (
           <div key={name} className="home-list-row">
             <span className="home-list-rank">

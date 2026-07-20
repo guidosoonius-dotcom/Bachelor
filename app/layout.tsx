@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display, Pacifico } from "next/font/google";
 import "./globals.css";
 import { EVENT_TITLE } from "@/lib/content";
-import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
 import NameGate from "@/components/NameGate";
 import BodyThemeSync from "@/components/BodyThemeSync";
@@ -54,7 +53,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <BodyThemeSync />
         <NameGate />
-        <TopBar />
         <main className="flex-1 w-full max-w-md mx-auto px-4 pt-4 pb-28">
           {children}
         </main>

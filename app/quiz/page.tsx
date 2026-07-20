@@ -6,6 +6,9 @@ import { useGuestName } from "@/lib/guest";
 import { QuizQuestionRow, QuizAnswerRow } from "@/lib/types";
 import QuizQuestion from "@/components/QuizQuestion";
 import QuizLeaderboard from "@/components/QuizLeaderboard";
+import NameEditButton from "@/components/NameEditButton";
+
+const POLL_INTERVAL_MS = 20000;
 
 export default function QuizPage() {
   const { guestName, ready } = useGuestName();
@@ -15,7 +18,6 @@ export default function QuizPage() {
   const [loading, setLoading] = useState(true);
 
   async function load() {
-    setLoading(true);
     try {
       const [{ data: q }, { data: a }] = await Promise.all([
         supabase.from("quiz_questions").select("*").order("sort_order"),
@@ -30,6 +32,8 @@ export default function QuizPage() {
 
   useEffect(() => {
     load();
+    const interval = setInterval(load, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -45,16 +49,33 @@ export default function QuizPage() {
     return <p className="text-muted text-sm">Laden...</p>;
   }
 
-  const quizCompleted =
-    questions.length > 0 && questions.every((q) => myAnswers[q.id] !== undefined);
+  const answeredCount = Object.keys(myAnswers).length;
+  const quizCompleted = questions.length > 0 && answeredCount === questions.length;
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="heading-script text-4xl">Quiz over de bachelor</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="heading-script text-4xl">Quiz over de bachelor</h1>
+        <NameEditButton />
+      </div>
       <p className="text-sm text-muted -mt-2">
         Hoe goed ken jij hem? Beantwoord alle {questions.length} vragen! De goede en foute
         antwoorden zie je pas zodra je alle vragen hebt beantwoord.
       </p>
+
+      {questions.length > 0 && (
+        <div className="flex flex-col gap-1.5">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+            <div
+              className="h-full rounded-full bg-primary transition-all"
+              style={{ width: `${(answeredCount / questions.length) * 100}%` }}
+            />
+          </div>
+          <p className="text-xs font-semibold text-muted">
+            {answeredCount} van de {questions.length} beantwoord
+          </p>
+        </div>
+      )}
 
       <div className="flex flex-col gap-4">
         {questions.map((q, index) => (

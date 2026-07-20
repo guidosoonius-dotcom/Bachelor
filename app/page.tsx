@@ -13,6 +13,8 @@ import HomeQuizScoreboard from "@/components/HomeQuizScoreboard";
 import TopDareCard from "@/components/TopDareCard";
 import PhotoUploaderLeaderboard from "@/components/PhotoUploaderLeaderboard";
 
+const POLL_INTERVAL_MS = 20000;
+
 export default function Home() {
   const { guestName, ready } = useGuestName();
   const [quizRemaining, setQuizRemaining] = useState(0);
@@ -64,6 +66,8 @@ export default function Home() {
     }
 
     load();
+    const interval = setInterval(load, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
   }, [ready, guestName]);
 
   return (

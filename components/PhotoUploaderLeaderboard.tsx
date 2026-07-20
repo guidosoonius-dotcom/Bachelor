@@ -14,10 +14,6 @@ export default function PhotoUploaderLeaderboard({ photos }: { photos: UploaderP
     <section className="home-section">
       <h4 className="section-heading">Meeste foto's geüpload</h4>
       <div className="home-list-card">
-        <span className="home-live-badge">
-          <span className="home-live-dot" />
-          Live
-        </span>
         {ranked.map(([name, count], i) => (
           <div key={name} className="home-list-row">
             <span className="home-list-rank">

@@ -1,16 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { useGuestName } from "@/lib/guest";
+import NameEditModal from "@/components/NameEditModal";
 
 export default function HomeHeader() {
   const { guestName, setGuestName, ready } = useGuestName();
-
-  function handleEditName() {
-    const next = window.prompt("Wat is je naam?", guestName ?? "");
-    if (next && next.trim()) {
-      setGuestName(next);
-    }
-  }
+  const [open, setOpen] = useState(false);
 
   const name = ready && guestName ? guestName : "Gast";
 
@@ -19,11 +15,20 @@ export default function HomeHeader() {
       <h1 className="home-wordmark">Vrijgezellenfeest</h1>
       <div className="home-user-row">
         <h2 className="home-welcome-text">Hallo {name}</h2>
-        <button onClick={handleEditName} className="home-user-badge">
+        <button onClick={() => setOpen(true)} className="home-user-badge">
           <span className="home-avatar-circle">{name.charAt(0).toUpperCase()}</span>
           <span>{name}</span>
         </button>
       </div>
+      <NameEditModal
+        open={open}
+        initialValue={guestName ?? ""}
+        onClose={() => setOpen(false)}
+        onSave={(value) => {
+          setGuestName(value);
+          setOpen(false);
+        }}
+      />
     </header>
   );
 }

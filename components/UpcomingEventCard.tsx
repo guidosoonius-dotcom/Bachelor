@@ -19,11 +19,13 @@ export default function UpcomingEventCard() {
   return (
     <section className="home-section">
       <h4 className="section-heading">{isCurrent ? "Nu bezig" : "Aankomende evenementen"}</h4>
-      <div className="event-card">
-        <span className="home-live-badge">
-          <span className="home-live-dot" />
-          Live
-        </span>
+      <div className={`event-card ${isCurrent ? "event-card-live" : ""}`}>
+        {isCurrent && (
+          <span className="home-live-badge">
+            <span className="home-live-dot" />
+            Live
+          </span>
+        )}
         <span className="event-icon-circle">
           <MapPin size={24} />
         </span>
