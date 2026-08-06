@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarClock, HelpCircle, ListChecks, Camera, Info } from "lucide-react";
+import { CalendarClock, HelpCircle, ListChecks, Camera, Info, Martini } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import { useGuestName } from "@/lib/guest";
 import { PHOTO_GOAL } from "@/lib/content";
+import { latestBachelorQuizJudgements } from "@/lib/bachelorQuiz";
 import HomeHeader from "@/components/HomeHeader";
 import CountdownHero from "@/components/CountdownHero";
 import FeatureTile from "@/components/FeatureTile";
@@ -26,19 +27,27 @@ export default function Home() {
   const [dares, setDares] = useState<{ id: string; text: string }[]>([]);
   const [dareVotes, setDareVotes] = useState<{ dare_id: string; guest_name: string }[]>([]);
   const [photoUploaders, setPhotoUploaders] = useState<{ guest_name: string | null }[]>([]);
+  const [shotsCount, setShotsCount] = useState(0);
 
   useEffect(() => {
     if (!ready) return;
 
     async function load() {
-      const [{ data: questions }, { data: answers }, { data: daresData }, { data: votes }, { data: photos }] =
-        await Promise.all([
-          supabase.from("quiz_questions").select("id"),
-          supabase.from("quiz_answers").select("question_id, guest_name, is_correct"),
-          supabase.from("dares").select("id, text"),
-          supabase.from("dare_votes").select("dare_id, guest_name"),
-          supabase.from("photos").select("guest_name"),
-        ]);
+      const [
+        { data: questions },
+        { data: answers },
+        { data: daresData },
+        { data: votes },
+        { data: photos },
+        { data: bachelorQuizAnswers },
+      ] = await Promise.all([
+        supabase.from("quiz_questions").select("id"),
+        supabase.from("quiz_answers").select("question_id, guest_name, is_correct"),
+        supabase.from("dares").select("id, text"),
+        supabase.from("dare_votes").select("dare_id, guest_name"),
+        supabase.from("photos").select("guest_name"),
+        supabase.from("bachelor_quiz_answers").select("question_id, is_correct, created_at"),
+      ]);
 
       const totalQuestions = questions?.length ?? 0;
       const answeredByMe = guestName
@@ -63,6 +72,9 @@ export default function Home() {
       setDares(daresData ?? []);
       setDareVotes(votes ?? []);
       setPhotoUploaders(photos ?? []);
+
+      const judged = latestBachelorQuizJudgements(bachelorQuizAnswers ?? []);
+      setShotsCount([...judged.values()].filter((row) => !row.is_correct).length);
     }
 
     load();
@@ -86,6 +98,14 @@ export default function Home() {
           progress={daresProgress}
         />
         <FeatureTile href="/info" label="Praktische info" icon={Info} variant="light" />
+        <FeatureTile
+          href="/erik-quiz"
+          label="Shotjes-quiz voor Erik"
+          icon={Martini}
+          variant="shot"
+          counter={shotsCount > 0 ? `${shotsCount} shotje${shotsCount === 1 ? "" : "s"}` : undefined}
+          fullWidth
+        />
         <FeatureTile
           href="/fotowall"
           label="Fotowall"

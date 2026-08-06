@@ -37,6 +37,13 @@ export type DareCompletionRow = {
   created_at: string;
 };
 
+export type BachelorQuizAnswerRow = {
+  id: string;
+  question_id: string;
+  is_correct: boolean;
+  created_at: string;
+};
+
 export type LocationSuggestionRow = {
   id: string;
   guest_name: string;

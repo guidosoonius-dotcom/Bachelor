@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
 
-type Variant = "light" | "teal" | "navy";
+type Variant = "light" | "teal" | "navy" | "shot";
 
 export default function FeatureTile({
   href,
@@ -23,6 +23,7 @@ export default function FeatureTile({
   fullWidth?: boolean;
 }) {
   const hasProgress = progress !== undefined;
+  const hasCounterBlock = hasProgress || counter !== undefined;
 
   return (
     <Link
@@ -34,15 +35,17 @@ export default function FeatureTile({
         <Icon size={22} />
       </span>
 
-      {hasProgress && (
+      {hasCounterBlock && (
         <div className="card-progress-wrapper">
           {counter && <div className="progress-info">{counter}</div>}
-          <div className="progress-bar-bg">
-            <div
-              className="progress-bar-fill"
-              style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
-            />
-          </div>
+          {hasProgress && (
+            <div className="progress-bar-bg">
+              <div
+                className="progress-bar-fill"
+                style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+              />
+            </div>
+          )}
         </div>
       )}
 
