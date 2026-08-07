@@ -44,19 +44,19 @@ export const BACHELOR_QUIZ_QUESTIONS: BachelorQuizQuestion[] = [
     id: "q4",
     question:
       "Als jullie samen op de bank ploffen, bij wie van jullie twee gaan de katten dan als állereerste op schoot liggen?",
-    answer: "",
+    answer: "Lilo ligt als eerste bij Erik op schoot.",
     criterion: "Vraag vooraf gesteld aan de bruid: 'Bij wie liggen de katten als eerste op schoot?'",
   },
   {
     id: "q5",
     question: "Wat is volgens haar jouw absolute favoriete film of serie die je keer op keer opnieuw kunt kijken?",
-    answer: "",
+    answer: "Dragonball Z — kijkt hij graag samen met Lilo.",
     criterion: "Vraag vooraf gesteld aan de bruid: 'Wat is zijn lievelingsfilm of -serie?'",
   },
   {
     id: "q6",
     question: "Hoeveel kilo denkt jouw vriendin dat jouw 'one rep max' momenteel is op de bench press?",
-    answer: "",
+    answer: "80 kilo.",
     criterion:
       "Vraag vooraf gesteld aan de bruid: 'Hoeveel kilo denk jij dat hij maximaal één keer kan bench pressen?'",
   },
@@ -76,13 +76,14 @@ export const BACHELOR_QUIZ_QUESTIONS: BachelorQuizQuestion[] = [
   {
     id: "q9",
     question: "Wat was volgens haar de allergrootste afknapper toen ze jou voor het eerst ontmoette?",
-    answer: "",
+    answer:
+      "Hij liet haar 's avonds in de regen staan wachten voor hun afspraak — na een uur wachten ging ze naar huis omdat hij er nog steeds niet was.",
     criterion: "Vraag vooraf gesteld aan de bruid.",
   },
   {
     id: "q10",
     question: "Wat is volgens jouw vriendin jouw meest irritante of vreemde trekje als je slaapt?",
-    answer: "",
+    answer: "Praten in zijn slaap en rechtop gaan zitten.",
     criterion:
       "Vraag vooraf gesteld aan de bruid: denk aan snurken, de deken stelen, praten in z'n slaap, of diagonaal liggen.",
   },
