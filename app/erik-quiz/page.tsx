@@ -138,8 +138,6 @@ export default function ErikQuizPage() {
         </p>
         <p className="bachelor-quiz-question">{question.question}</p>
 
-        {question.criterion && <p className="bachelor-quiz-criterion">{question.criterion}</p>}
-
         {question.hasTimer && (
           <div className="flex flex-col items-center gap-2">
             {timerSeconds !== null ? (
@@ -156,9 +154,12 @@ export default function ErikQuizPage() {
         )}
 
         {isRevealed ? (
-          <p className={`bachelor-quiz-answer ${question.answer ? "" : "bachelor-quiz-answer-missing"}`}>
-            {question.answer || "Antwoord volgt nog van Guido — beoordeel voorlopig zelf."}
-          </p>
+          <>
+            {question.criterion && <p className="bachelor-quiz-criterion">{question.criterion}</p>}
+            <p className={`bachelor-quiz-answer ${question.answer ? "" : "bachelor-quiz-answer-missing"}`}>
+              {question.answer || "Antwoord volgt nog van Guido — beoordeel voorlopig zelf."}
+            </p>
+          </>
         ) : (
           <button onClick={reveal} className="bachelor-quiz-reveal-button">
             Toon antwoord
